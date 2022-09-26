@@ -26,7 +26,7 @@ export const userSlice = createSlice({
       };
       state.user = user;
     },
-    ON_LOGOUT: (state) => {
+    ON_LOGOUT: () => {
       return initialState;
     },
   },
@@ -35,4 +35,4 @@ export const userSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const { ON_LOGIN, ON_LOGOUT } = userSlice.actions;
 
-export default userSlice.reducer;
+export default userSlice;
