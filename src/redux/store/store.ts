@@ -15,7 +15,7 @@ export const store = configureStore({
   reducer: {
     userSlice: persistedReducer,
   },
-  devTools: process.env.NODE_ENV !== "production",
+  // devTools: process.env.NODE_ENV !== "production",
   // middleware: [thunk, logger],
   middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger),
 });
