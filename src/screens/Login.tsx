@@ -1,10 +1,11 @@
 import { Button, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { useSelector } from "react-redux";
-import { ApplicationState } from "../redux";
-import { useDispatch } from "react-redux";
 import { useAppDispatch, useAppSelector } from "../redux/Hooks/hooks";
-import { ON_LOGIN, ON_LOGOUT } from "../redux/reducers/userSlice";
+import {
+  ADD_TRANSACTION,
+  ON_LOGIN,
+  ON_LOGOUT,
+} from "../redux/reducers/userSlice";
 
 type Props = {};
 
@@ -18,13 +19,28 @@ const Login = () => {
   const onTapLogOut = () => {
     dispatch(ON_LOGOUT());
   };
+  function addTransaction() {
+    dispatch(
+      ADD_TRANSACTION({
+        user,
+        cost: 10,
+      })
+    );
+  }
   const user = useAppSelector((state) => state.userSlice.user);
+  const transactions = useAppSelector((state) => state.userSlice.transactions);
+  console.log(transactions)
   return (
     <View style={styles.container}>
       <Button title="LogIn" onPress={() => onTapLogin()} />
       <Text> user name {user?.firstName}</Text>
       <Text> last name {user?.lastName}</Text>
+      {/* {transactions.map((tr) => {
+        return <Text>aa{tr[0]}</Text>;
+      })} */}
+
       <Button title="Logout" onPress={() => onTapLogOut()} />
+      <Button title="Add Transaction" onPress={() => addTransaction()} />
     </View>
   );
 };
